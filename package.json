@@ -1,0 +1,44 @@
+{
+  "name": "vue-template-cms",
+  "version": "1.0.0",
+  "description": "",
+  "private": false,
+  "scripts": {
+    "dev": "webpack serve  --env mode=local env=dev --config ./build/webpack.dev.config.js",
+    "test": "webpack serve  --env mode=local env=test --config ./build/webpack.dev.config.js",
+    "pre": "webpack serve  --env mode=local env=pre --config ./build/webpack.dev.config.js",
+    "build:dev": "webpack  --env mode=server env=dev --config ./build/webpack.build.config.js",
+    "build:test": "webpack  --env mode=server env=test --config ./build/webpack.build.config.js",
+    "build:pre": "webpack  --env mode=server env=pre --config ./build/webpack.build.config.js",
+    "build:prod": "webpack  --env mode=server env=prod --config ./build/webpack.build.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "launch-editor-middleware": "^2.3.0",
+    "less-loader": "^10.2.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "nprogress": "^0.2.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
+    "url-loader": "^4.1.1",
+    "vue-loader": "^15.9.8",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.3.2",
+    "vuex": "^3.4.0"
+  }
+}
