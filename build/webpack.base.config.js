@@ -6,7 +6,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') //将定义过的其它
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: [path.resolve(__dirname, '../src/main.js')],
+  entry: [ path.resolve(__dirname, '../src/main.js')],
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'static/js/[name][contenthash].js',

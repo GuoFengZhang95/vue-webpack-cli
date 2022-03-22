@@ -12,13 +12,13 @@ module.exports = entry => {
   }
   const prodConfig = {
     mode: 'production',
-    // devtool: env ? 'eval-source-map' : none,
-    devtool: evn ? 'nosources-source-map' : none,
+    // devtool: env ? 'eval-source-map' : false,
+    devtool: env ? 'nosources-source-map' : false,
     optimization: {
       minimize: true, //生产模式下默认为true 执行优化操作
       minimizer: [
         new CssMinimizerPlugin(),
-        new TerserWebpackPlugin(),
+        // new TerserWebpackPlugin(),
       ],
       splitChunks: {
         chunks: 'all',
