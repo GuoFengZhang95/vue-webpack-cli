@@ -6,22 +6,19 @@ const TerserWebpackPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = entry => {
-  const { mode, env } = entry
+  let { mode, env } = entry
   if (env === 'prod') {
     env = ''
   }
   const prodConfig = {
     mode: 'production',
-    devtool: env ? 'eval-source-map' : 'cheap-module-source-map',
+    // devtool: env ? 'eval-source-map' : none,
+    devtool: evn ? 'nosources-source-map' : none,
     optimization: {
       minimize: true, //生产模式下默认为true 执行优化操作
       minimizer: [
         new CssMinimizerPlugin(),
-        new TerserWebpackPlugin({
-          cache: true,
-          parallel: true,
-          sourceMap: true, // 如果生产环境开启了sourceMap 那么必须设置为true
-        }),
+        new TerserWebpackPlugin(),
       ],
       splitChunks: {
         chunks: 'all',

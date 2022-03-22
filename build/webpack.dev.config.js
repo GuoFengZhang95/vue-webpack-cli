@@ -7,12 +7,13 @@ module.exports = entry => {
   const { mode, env } = entry
   const devServerConfig = {
     mode: 'development',
+    // devtool: 'eval',
     devtool: 'eval-source-map',
     devServer: {
       host: 'webpack.17m17.com',
       port: 443,
       hot: true,
-      open: true,
+      open: false,
       historyApiFallback: true,
       client: {
         logging: 'error',

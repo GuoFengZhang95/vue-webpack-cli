@@ -10,8 +10,18 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
-}
+  mounted() {
+    const fn = () => {
+      console.log(1)
+    }
+    console.log(fn)
+    const arr = [1, 2, 3]
+    let bool = arr.includes(1)
+    console.log(bool)
+    let p = new Promise((resolve, reject) => {})
+    console.log(p)
+  },
+};
 </script>
 
 <style lang="less">
