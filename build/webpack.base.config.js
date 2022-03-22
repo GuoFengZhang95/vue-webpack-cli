@@ -9,7 +9,7 @@ module.exports = {
   entry: [path.resolve(__dirname, '../src/main.js')],
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'static/js/[name][hash].js',
+    filename: 'static/js/[name][contenthash].js',
     publicPath: '/',
   },
   resolve: {
@@ -21,19 +21,19 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|vue)$/,
-        exclude: /node_modules/,
-        use: ['eslint-loader'],
-      },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.(js|vue)$/,
+      //   exclude: /node_modules/,
+      //   use: ['eslint-loader'],
+      // },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /(node_modules)/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //   },
+      // },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -48,9 +48,9 @@ module.exports = {
           {
             loader: 'css-loader',
           },
-          {
-            loader: 'postcss-loader',
-          },
+          // {
+          //   loader: 'postcss-loader',
+          // },
           {
             loader: 'less-loader',
             options: {

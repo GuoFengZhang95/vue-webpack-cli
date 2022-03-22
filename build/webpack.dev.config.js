@@ -4,19 +4,24 @@ const openInEditor = require('launch-editor-middleware')
 const webpack = require('webpack')
 
 module.exports = entry => {
-  console.log('entry', entry)
   const { mode, env } = entry
   const devServerConfig = {
     mode: 'development',
     devtool: 'eval-source-map',
     devServer: {
-      host: 'mysaas.17m17.com',
-      hot: true,
-      open: false,
-      https: true,
+      host: 'webpack.17m17.com',
       port: 443,
-      stats: 'errors-only',
+      hot: true,
+      open: true,
       historyApiFallback: true,
+      client: {
+        logging: 'error',
+        overlay: true,
+        progress: true,
+        reconnect: true,
+      },
+      server: 'https',
+      compress: true,
       proxy: {
         '/mall-api': {
           target: `https://mall-api${env}.mumuxili.com`,
@@ -69,9 +74,13 @@ module.exports = entry => {
           pathRewrite: { '^/yqmm-service-api': '' },
         },
       },
-      before(app) {
+      setupMiddlewares: (middlewares, devServer) => {
+        if (!devServer) {
+          throw new Error('webpack-dev-server is not defined');
+        }
         // 指定在那种编辑器中打开组件
-        app.use('/__open-in-editor', openInEditor('code'))
+        devServer.app.use('/__open-in-editor', openInEditor('code'))
+        return middlewares
       }
     },
     module: {

@@ -1,28 +1,4 @@
-import { message } from 'ant-design-vue'
-import qs from 'querystring'
-// import router from '../router'
-import Cookies from 'js-cookie'
-
 import axios from 'axios'
-const Jsonp = require('jsonp')
-
-import { loginCheckJump } from '@/api/login.js'
-
-// ========== jsonp请求 ==========
-function jsonp(opts) {
-  let { baseURL, url, params } = opts
-  return new Promise((resolve, reject) => {
-    Jsonp(`${baseURL}/${url}?${qs.stringify(params)}`, (err, data) => {
-      // console.log(err, data)
-      if (!err) {
-        resolve(data)
-      } else {
-        reject(err)
-        // console.log(err)
-      }
-    })
-  })
-}
 // ========== 创建axios实例 ==========
 const service = axios.create({
   // baseURL: '/test', // url = base url + request url
@@ -47,11 +23,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if (Reflect.has(res, 'success')) {
-      return phpResHandle(res)
-    } else {
-      return javaResHandle(res)
-    }
+    return res
   },
   error => {
     // eslint-disable-next-line no-console
@@ -61,44 +33,7 @@ service.interceptors.response.use(
 )
 
 function request(opts) {
-  if (opts.jsonp) {
-    return jsonp(opts)
-  } else {
-    return service(opts)
-  }
-}
-
-function phpResHandle(res) {
-  if (res.success === false) {
-    // 登陆过期
-    if (res.msg === '登录超时,请重新登录') {
-      localStorage.removeItem('eosUserInfo')
-      Cookies.remove('is_login', { path: '/', domain: '.17m17.com' })
-      loginCheckJump()
-      return Promise.reject(res)
-    }
-    return res
-  } else {
-    return res
-  }
-}
-
-function javaResHandle(res) {
-  if (res.code !== '0') {
-    // 登陆过期
-    if (res.code === '100001') {
-      localStorage.removeItem('eosUserInfo')
-      Cookies.remove('is_login', { path: '/', domain: '.17m17.com' })
-      loginCheckJump()
-      return Promise.reject(res)
-    }
-    if (res.msg !== '暂无查看全部权限') {
-      message.error(res.msg, 2)
-    }
-    return res
-  } else {
-    return res
-  }
+  return service(opts)
 }
 
 export default request

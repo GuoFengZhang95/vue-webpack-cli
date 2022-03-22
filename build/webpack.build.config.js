@@ -6,8 +6,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = entry => {
-  const entries = entry.split('-')
-  let [mode, env] = entries
+  const { mode, env } = entry
   if (env === 'prod') {
     env = ''
   }

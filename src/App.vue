@@ -5,15 +5,13 @@
 </template>
 
 <script>
-  export default {
-    name: 'App',
-    data() {
-      return {}
-    },
-    mounted() {
-      console.log(this)
-    },
-  }
+export default {
+  name: "App",
+  data() {
+    return {};
+  },
+  mounted() {},
+}
 </script>
 
 <style lang="less">
