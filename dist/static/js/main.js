@@ -13,19 +13,17 @@ var vue_router_esm = __webpack_require__(8345);
 ;// CONCATENATED MODULE: ./src/router/index.js
 
 
-var routerPush = vue_router_esm/* default.prototype.push */.Z.prototype.push;
+const routerPush = vue_router_esm/* default.prototype.push */.Z.prototype.push;
 
 vue_router_esm/* default.prototype.push */.Z.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(function (error) {
-    return error;
-  });
+  return routerPush.call(this, location).catch(error => error);
 };
 
 vue_runtime_esm/* default.use */.Z.use(vue_router_esm/* default */.Z);
-var routes = [];
-var router = new vue_router_esm/* default */.Z({
+const routes = [];
+const router = new vue_router_esm/* default */.Z({
   mode: 'history',
-  routes: routes
+  routes
 });
 /* harmony default export */ var src_router = (router);
 ;// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/App.vue?vue&type=template&id=7ba5bd90&
@@ -46,11 +44,6 @@ render._withStripped = true
 
 ;// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=7ba5bd90&
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs3/helpers/esm/asyncToGenerator.js
-var asyncToGenerator = __webpack_require__(3938);
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs3/regenerator/index.js
-var regenerator = __webpack_require__(3109);
-var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs3/core-js-stable/map.js
 var core_js_stable_map = __webpack_require__(9392);
 var map_default = /*#__PURE__*/__webpack_require__.n(core_js_stable_map);
@@ -64,8 +57,6 @@ var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
 
 
 
-
-
 //
 //
 //
@@ -75,58 +66,44 @@ var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
 //
 /* harmony default export */ var Appvue_type_script_lang_js_ = ({
   name: "App",
-  data: function data() {
+
+  data() {
     return {
       awaitNum: 0
     };
   },
-  mounted: function mounted() {
-    var _this = this;
 
-    return (0,asyncToGenerator/* default */.Z)( /*#__PURE__*/regenerator_default().mark(function _callee() {
-      var _context;
+  async mounted() {
+    var _context;
 
-      var fn, map, bool, p, httpRes;
-      return regenerator_default().wrap(function _callee$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              fn = function fn() {
-                console.log(1);
-              };
+    const fn = () => {
+      console.log(1);
+    };
 
-              map = new (map_default())();
-              bool = includes_default()(_context = [1, 2, 3]).call(_context, 1);
-              p = new (promise_default())(function (resolve, reject) {});
-              _context2.next = 6;
-              return _this.http();
+    let map = new (map_default())();
 
-            case 6:
-              httpRes = _context2.sent;
-              console.log('箭头函数', fn);
-              console.log('Map', map);
-              console.log('includes', bool);
-              console.log('Promise', p);
-              console.log('Vuex', _this.$store);
-              console.log('await', httpRes);
-              _this.awaitNum = httpRes;
+    let bool = includes_default()(_context = [1, 2, 3]).call(_context, 1);
 
-            case 14:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee);
-    }))();
+    let p = new (promise_default())((resolve, reject) => {});
+    let httpRes = await this.http();
+    console.log('箭头函数', fn);
+    console.log('Map', map);
+    console.log('includes', bool);
+    console.log('Promise', p);
+    console.log('Vuex', this.$store);
+    console.log('await', httpRes);
+    this.awaitNum = httpRes;
   },
+
   methods: {
-    http: function http() {
-      return new (promise_default())(function (resolve, reject) {
-        setTimeout(function () {
+    http() {
+      return new (promise_default())((resolve, reject) => {
+        setTimeout(() => {
           resolve(1);
         }, 2000);
       });
     }
+
   }
 });
 ;// CONCATENATED MODULE: ./src/App.vue?vue&type=script&lang=js&
@@ -159,36 +136,38 @@ component.options.__file = "src/App.vue"
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs3/core-js-stable/instance/find-index.js
 var find_index = __webpack_require__(2462);
 var find_index_default = /*#__PURE__*/__webpack_require__.n(find_index);
-// EXTERNAL MODULE: ./node_modules/vuex/dist/vuex.esm.js + 1 modules
-var vuex_esm = __webpack_require__(7020);
+// EXTERNAL MODULE: ./node_modules/vuex/dist/vuex.esm.js
+var vuex_esm = __webpack_require__(3851);
 ;// CONCATENATED MODULE: ./src/store/getters.js
-var getters = {
-  sideBarCollapsed: function sideBarCollapsed(state) {
+const getters = {
+  sideBarCollapsed: state => {
     return state.app.sideBarCollapsed;
   }
 };
 /* harmony default export */ var store_getters = (getters);
 ;// CONCATENATED MODULE: ./src/store/modules/app.js
-var state = {
+const state = {
   sideBarCollapsed: false
 };
-var mutations = {
-  Toggle_Side_Bar: function Toggle_Side_Bar(state, val) {
+const mutations = {
+  Toggle_Side_Bar: (state, val) => {
     state.sideBarCollapsed = val;
   }
 };
-var actions = {
+const actions = {
   // 侧导航是否折叠
-  toggleSideBar: function toggleSideBar(_ref, val) {
-    var commit = _ref.commit;
+  toggleSideBar({
+    commit
+  }, val) {
     commit('Toggle_Side_Bar', val);
   }
+
 };
 /* harmony default export */ var app = ({
   namespaced: true,
-  state: state,
-  mutations: mutations,
-  actions: actions
+  state,
+  mutations,
+  actions
 });
 ;// CONCATENATED MODULE: ./src/store/index.js
 
@@ -197,7 +176,7 @@ var actions = {
 
 vue_runtime_esm/* default.use */.Z.use(vuex_esm/* default */.ZP);
 
-var store = {
+const store = {
   modules: {
     app: app
   },
@@ -224,14 +203,14 @@ var store = {
   },
   mutations: {
     // 打开|关闭全局侧拉
-    toggleDrawer: function toggleDrawer(state, data) {
+    toggleDrawer(state, data) {
       // drawerFlag 侧拉||收起
       if (data.drawerFlag) {
         // drawerComponent 进入2级||返回上一层
         if (data.drawerComponent) {
           var _context;
 
-          var flag = !!data.isListItem; //非列表进入标识isListItem
+          let flag = !!data.isListItem; //非列表进入标识isListItem
 
           if (flag) {
             //判断是否从列表进入 若列表进入清空显示历史记录
@@ -240,9 +219,7 @@ var store = {
 
           state.drawerList.push(data.drawerComponent);
 
-          var idx = find_index_default()(_context = state.drawerList).call(_context, function (e) {
-            return e.name === data.drawerComponent.name;
-          });
+          let idx = find_index_default()(_context = state.drawerList).call(_context, e => e.name === data.drawerComponent.name);
 
           if (idx < 0) {
             console.log('不存在记录内');
@@ -260,10 +237,12 @@ var store = {
 
       state.drawerFlag = data.drawerFlag;
     },
+
     // 设置企业权益相关数据信息
-    setAuthDetail: function setAuthDetail(state, data) {
+    setAuthDetail(state, data) {
       state.authDetail = data;
     }
+
   }
 };
 /* harmony default export */ var src_store = (new vuex_esm/* default.Store */.ZP.Store(store));
@@ -277,26 +256,25 @@ var nprogress_default = /*#__PURE__*/__webpack_require__.n(nprogress);
 nprogress_default().configure({
   showSpinner: false
 });
-src_router.beforeEach(function (to, from, next) {
+src_router.beforeEach((to, from, next) => {
   nprogress_default().start();
   next();
 });
-src_router.afterEach(function () {
+src_router.afterEach(() => {
   nprogress_default().done();
 });
 ;// CONCATENATED MODULE: ./src/components/index.js
-var components = [];
+const components = [];
 
-var install = function install(Vue) {
-  var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  components.forEach(function (component) {
+const install = function (Vue, opts = {}) {
+  components.forEach(component => {
     Vue.component(component.name, component);
   });
 };
 
 /* harmony default export */ var src_components = ({
   version: '',
-  install: install
+  install
 });
 ;// CONCATENATED MODULE: ./src/main.js
 
@@ -311,9 +289,7 @@ vue_runtime_esm/* default.use */.Z.use(src_components);
 new vue_runtime_esm/* default */.Z({
   router: src_router,
   store: src_store,
-  render: function render(h) {
-    return h(App);
-  }
+  render: h => h(App)
 }).$mount('#app');
 
 /***/ })
