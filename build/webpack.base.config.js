@@ -30,12 +30,7 @@ module.exports = {
       // },
       {
         test: /\.m?js$/,
-        exclude: function (modulePath) {
-          if (/node_modules/.test(modulePath) && !/vuex/.test(modulePath)) {
-            console.log(modulePath)
-            return modulePath
-          }
-        },
+        exclude: /node_modules/,
         use: {
           loader: "babel-loader",
         }
