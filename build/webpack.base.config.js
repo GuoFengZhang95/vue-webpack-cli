@@ -6,7 +6,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') //将定义过的其它
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: [ path.resolve(__dirname, '../src/main.js')],
+  entry: [path.resolve(__dirname, '../src/main.js')],
+  // entry: ['@babel/polyfill', path.resolve(__dirname, '../src/main.js')],
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'static/js/[name][contenthash].js',
@@ -29,7 +30,12 @@ module.exports = {
       // },
       {
         test: /\.m?js$/,
-        exclude: /node_modules/,
+        exclude: function (modulePath) {
+          if (/node_modules/.test(modulePath) && !/vuex/.test(modulePath)) {
+            console.log(modulePath)
+            return modulePath
+          }
+        },
         use: {
           loader: "babel-loader",
         }
