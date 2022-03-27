@@ -32,7 +32,6 @@ module.exports = {
         test: /\.m?js$/,
         exclude: function (modulePath) {
           if (/node_modules/.test(modulePath) && !/vuex/.test(modulePath)) {
-            console.log(modulePath)
             return modulePath
           }
         },

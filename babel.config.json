@@ -4,12 +4,9 @@
             "@babel/preset-env",
             {
                 "targets": {
-                    // "chrome": "58"
+                    // "chrome": "99"
                     "ie": "11"
-                },
-                // "useBuiltIns": "entry",
-                // "useBuiltIns": "usage",
-                // "corejs": 3
+                }
             }
         ]
     ],
@@ -22,5 +19,4 @@
         ]
     ]
 }
-// @babel/polyfill结合"useBuiltIns": "usage" 可以按需引入,但是会污染全局变量（对于个人应用没什么问题）而且即将弃用
-// @babel/plugin-transform-runtime 可以解决这个问题
+// @babel/plugin-transform-runtime 不会污染全局环境，但是没有 targets 选项
