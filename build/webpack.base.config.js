@@ -10,7 +10,7 @@ module.exports = {
   // entry: ['@babel/polyfill', path.resolve(__dirname, '../src/main.js')],
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'static/js/[name].js',
+    filename: 'static/js/[name][contenthash].js',
     publicPath: '/',
   },
   resolve: {
