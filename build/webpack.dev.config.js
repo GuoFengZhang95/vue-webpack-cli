@@ -103,5 +103,6 @@ module.exports = entry => {
       })
     ],
   }
+  console.log(merge(devServerConfig, baseConfig).module.rules[0].use)
   return merge(devServerConfig, baseConfig)
 }

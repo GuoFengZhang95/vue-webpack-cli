@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     {{ awaitNum }}
+    <div class="box"></div>
     <router-view />
   </div>
 </template>
@@ -48,4 +49,12 @@ export default {
 </script>
 
 <style lang="less">
+.box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  box-shadow: 10px 10px red;
+  transform: translateX(30px);
+  display: flex;
+}
 </style>
