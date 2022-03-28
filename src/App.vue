@@ -29,6 +29,11 @@ export default {
     console.log('Vuex', this.$store)
     console.log('await', httpRes)
     this.awaitNum = httpRes
+    const person = {
+      name: 'zgf'
+    }
+    let name = person.name ?? 'zevan'
+    console.log(name)
   },
   methods: {
     http() {

@@ -1,8 +1,0 @@
-#兼容IE10
-ie >= 10
-# 支持浏览器最新一版(IE11)
-last 1 version
-# 国内浏览器市场份额大于1%
-> 1% in CN
-# dead: 占有率极地 不再维护
-not dead

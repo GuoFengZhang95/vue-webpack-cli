@@ -1,8 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin') //生成dist文件夹下的html模板
-const { CleanWebpackPlugin } = require('clean-webpack-plugin') //打包前删除dist文件夹
 const VueLoaderPlugin = require('vue-loader/lib/plugin') //将定义过的其它规则复制并应用到 .vue 文件里相应语言块
-
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
@@ -27,13 +25,20 @@ module.exports = {
       //   exclude: /node_modules/,
       //   use: ['eslint-loader'],
       // },
+      // {
+      //   test: /\.m?js$/,
+      //   exclude: function (modulePath) {
+      //     if (/node_modules/.test(modulePath) && !/vuex/.test(modulePath)) {
+      //       return modulePath
+      //     }
+      //   },
+      //   use: {
+      //     loader: "babel-loader",
+      //   }
+      // },
       {
         test: /\.m?js$/,
-        exclude: function (modulePath) {
-          if (/node_modules/.test(modulePath) && !/vuex/.test(modulePath)) {
-            return modulePath
-          }
-        },
+        exclude: /node_modules/,
         use: {
           loader: "babel-loader",
         }
@@ -57,14 +62,6 @@ module.exports = {
           // },
           {
             loader: 'less-loader',
-            options: {
-              lessOptions: {
-                modifyVars: {
-                  'primary-color': '#00C7DB',
-                },
-                javascriptEnabled: true,
-              },
-            },
           },
         ],
       },
@@ -85,20 +82,20 @@ module.exports = {
     ],
   },
   plugins: [
+
     new HtmlWebpackPlugin({
       filename: 'index.html', //生成的文件名称
-      template: path.resolve(__dirname, '../public/index.html'), //模版源绝对路径
-      favicon: path.resolve(__dirname, '../public/favicon.ico')
+      template: path.resolve(__dirname, '../src/index.html'), //模版源绝对路径
+      // favicon: path.resolve(__dirname, '../public/favicon.ico') 使用这种方式感觉和CopyWebpackPlugin的范围冲突（实际不影响，但是模板html不能放在public文件夹下面）
     }),
-    new CleanWebpackPlugin(),
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, '../public、'),
-    //       to: path.resolve(__dirname, '../dist、'),
-    //     },
-    //   ],
-    // }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, '../public'),
+          to: path.resolve(__dirname, '../dist/public'),
+        },
+      ],
+    }),
     new VueLoaderPlugin(),
   ],
 }

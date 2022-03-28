@@ -1,9 +1,10 @@
-const baseConfig = require('./webpack.base.config')
+const webpack = require('webpack')
 const { merge } = require('webpack-merge')
+const baseConfig = require('./webpack.base.config')
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') //将CSS提取为独立的文件的插件，对每个包含css的js文件都会创建一个CSS文件，支持按需加载css和sourceMap
 const TerserWebpackPlugin = require('terser-webpack-plugin')
-const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin') //打包前删除dist文件夹
 
 module.exports = entry => {
   let { mode, env } = entry
@@ -44,9 +45,6 @@ module.exports = entry => {
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              options: {
-                publicPath: '../../',
-              },
             },
           ],
         },
@@ -61,6 +59,7 @@ module.exports = entry => {
         filename: 'css/[name][contenthash].css',
         ignoreOrder: true,
       }),
+      new CleanWebpackPlugin(),
     ],
   }
   return merge(prodConfig, baseConfig)
