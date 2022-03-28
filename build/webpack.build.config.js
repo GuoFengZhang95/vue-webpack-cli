@@ -18,7 +18,7 @@ module.exports = entry => {
       minimize: true, //生产模式下默认为true 执行优化操作
       minimizer: [
         new CssMinimizerPlugin(),
-        // new TerserWebpackPlugin(),
+        new TerserWebpackPlugin(),
       ],
       splitChunks: {
         chunks: 'all',
