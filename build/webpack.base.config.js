@@ -7,7 +7,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: [path.resolve(__dirname, '../src/main.js')],
-  // entry: ['@babel/polyfill', path.resolve(__dirname, '../src/main.js')],
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'static/js/[name][contenthash].js',
@@ -32,7 +31,6 @@ module.exports = {
         test: /\.m?js$/,
         exclude: function (modulePath) {
           if (/node_modules/.test(modulePath) && !/vuex/.test(modulePath)) {
-            console.log(modulePath)
             return modulePath
           }
         },
