@@ -58,7 +58,7 @@ module.exports = entry => {
         'process.env.ENV': JSON.stringify(env)
       }),
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name][contenthash].css',
+        filename: 'css/[name][contenthash].css',
         ignoreOrder: true,
       }),
     ],

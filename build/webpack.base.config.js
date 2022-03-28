@@ -9,7 +9,7 @@ module.exports = {
   entry: [path.resolve(__dirname, '../src/main.js')],
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'static/js/[name][contenthash].js',
+    filename: 'js/[name][contenthash].js',
     publicPath: '/',
   },
   resolve: {
@@ -77,7 +77,7 @@ module.exports = {
               esModule: false,
               limit: 10000,
               fallback: 'file-loader',
-              outputPath: 'static/images/',
+              outputPath: 'images/',
             },
           },
         ],
@@ -87,17 +87,18 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html', //生成的文件名称
-      template: path.resolve(__dirname, '../src/index.html'), //模版源绝对路径
+      template: path.resolve(__dirname, '../public/index.html'), //模版源绝对路径
+      favicon: path.resolve(__dirname, '../public/favicon.ico')
     }),
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, '../public/static'),
-          to: path.resolve(__dirname, '../dist/static'),
-        },
-      ],
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, '../public、'),
+    //       to: path.resolve(__dirname, '../dist、'),
+    //     },
+    //   ],
+    // }),
     new VueLoaderPlugin(),
   ],
 }
