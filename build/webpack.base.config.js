@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin') //生成dist文件夹�
 const VueLoaderPlugin = require('vue-loader/lib/plugin') //将定义过的其它规则复制并应用到 .vue 文件里相应语言块
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
+const ESLintPlugin = require('eslint-webpack-plugin')
 module.exports = {
   entry: [path.resolve(__dirname, '../src/main.js')],
   output: {
@@ -19,12 +20,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   enforce: 'pre',
-      //   test: /\.(js|vue)$/,
-      //   exclude: /node_modules/,
-      //   use: ['eslint-loader'],
-      // },
       // js
       {
         test: /\.m?js$/,
@@ -84,6 +79,12 @@ module.exports = {
           to: path.resolve(__dirname, '../dist/public'),
         },
       ],
+    }),
+    new ESLintPlugin({
+      extensions: ['js', 'vue'],
+      exclude: ['node_modules'],
+      threads: 4,
+      fix: false
     }),
     new VueLoaderPlugin(),
     new WebpackBar()

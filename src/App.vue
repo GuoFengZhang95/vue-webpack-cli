@@ -11,18 +11,18 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
   data() {
     return {
       awaitNum: 0,
-      img: require("@/assets/images/404.png"),
-    };
+      img: require('@/assets/images/404.png'),
+    }
   },
   mounted() {
     console.log(this.img)
   },
   methods: {},
-};
+}
 </script>
 
 <style lang="less">

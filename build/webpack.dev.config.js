@@ -1,12 +1,8 @@
-const baseConfig = require('./webpack.base.config')
+const BaseConfig = require('./webpack.base.config')
 const { merge } = require('webpack-merge')
 const openInEditor = require('launch-editor-middleware')
-const webpack = require('webpack')
+const Webpack = require('webpack')
 const { getPort } = require('./utils')
-getPort
-
-
-
 
 module.exports = async entry => {
   const { mode, env } = entry
@@ -104,11 +100,11 @@ module.exports = async entry => {
       ],
     },
     plugins: [
-      new webpack.DefinePlugin({
+      new Webpack.DefinePlugin({
         'process.env.MODE': JSON.stringify(mode),
         'process.env.ENV': JSON.stringify(env)
       })
     ],
   }
-  return merge(devServerConfig, baseConfig)
+  return merge(devServerConfig, BaseConfig)
 }
