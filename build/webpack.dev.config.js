@@ -24,56 +24,56 @@ module.exports = entry => {
       server: 'https',
       compress: true,
       proxy: {
-        '/mall-api': {
-          target: `https://mall-api${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/mall-api': '' },
-        },
-        '/vip-api': {
-          target: `https://vip${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/vip-api': '' },
-        },
-        '/login-api': {
-          target: `https://login-api${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/login-api': '' },
-        },
-        '/api-api': {
-          target: `https://api${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/api-api': '' },
-        },
-        '/service-login-api': {
-          target: `https://login${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/service-login-api': '' },
-        },
-        '/mis-service': {
-          target: `https://mis-service${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/mis-service': '' },
-        },
-        '/yqmm-api': {
-          target: `https://yqmm-api${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/yqmm-api': '' },
-        },
-        '/login-api': {
-          target: `https://login-api${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/login-api': '' },
-        },
-        '/app-web-api': {
-          target: `https://app-web${env}.17m17.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/app-web-api': '' },
-        },
-        '/yqmm-service-api': {
-          target: `https://yqmm-service${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/yqmm-service-api': '' },
-        },
+        // '/mall-api': {
+        //   target: `https://mall-api${env}.mumuxili.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/mall-api': '' },
+        // },
+        // '/vip-api': {
+        //   target: `https://vip${env}.mumuxili.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/vip-api': '' },
+        // },
+        // '/login-api': {
+        //   target: `https://login-api${env}.mumuxili.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/login-api': '' },
+        // },
+        // '/api-api': {
+        //   target: `https://api${env}.mumuxili.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/api-api': '' },
+        // },
+        // '/service-login-api': {
+        //   target: `https://login${env}.mumuxili.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/service-login-api': '' },
+        // },
+        // '/mis-service': {
+        //   target: `https://mis-service${env}.mumuxili.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/mis-service': '' },
+        // },
+        // '/yqmm-api': {
+        //   target: `https://yqmm-api${env}.mumuxili.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/yqmm-api': '' },
+        // },
+        // '/login-api': {
+        //   target: `https://login-api${env}.mumuxili.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/login-api': '' },
+        // },
+        // '/app-web-api': {
+        //   target: `https://app-web${env}.17m17.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/app-web-api': '' },
+        // },
+        // '/yqmm-service-api': {
+        //   target: `https://yqmm-service${env}.mumuxili.com`,
+        //   changeOrigin: true,
+        //   pathRewrite: { '^/yqmm-service-api': '' },
+        // },
       },
       setupMiddlewares: (middlewares, devServer) => {
         if (!devServer) {
@@ -103,6 +103,5 @@ module.exports = entry => {
       })
     ],
   }
-  console.log(merge(devServerConfig, baseConfig).module.rules[0].use)
   return merge(devServerConfig, baseConfig)
 }

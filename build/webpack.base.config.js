@@ -25,17 +25,7 @@ module.exports = {
       //   exclude: /node_modules/,
       //   use: ['eslint-loader'],
       // },
-      // {
-      //   test: /\.m?js$/,
-      //   exclude: function (modulePath) {
-      //     if (/node_modules/.test(modulePath) && !/vuex/.test(modulePath)) {
-      //       return modulePath
-      //     }
-      //   },
-      //   use: {
-      //     loader: "babel-loader",
-      //   }
-      // },
+      // js
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
@@ -43,14 +33,12 @@ module.exports = {
           loader: "babel-loader",
         }
       },
+      // vue
       {
         test: /\.vue$/,
         loader: 'vue-loader',
       },
-      {
-        test: /\.(ttf|eot|woff|woff2)$/,
-        use: 'url-loader',
-      },
+      // css
       {
         test: /\.(c|sc|le|sa)ss$/,
         use: [
@@ -65,19 +53,21 @@ module.exports = {
           },
         ],
       },
+      // image
       {
-        test: /\.(png|jpg|gif|webp|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              esModule: false,
-              limit: 10000,
-              fallback: 'file-loader',
-              outputPath: 'images/',
-            },
-          },
-        ],
+        test: /\.(png|jpg|gif|webp|svg|ico)$/,
+        type: 'asset', // 代替file-loader url-loader
+        // type: 'asset/resource' 代替file-loader
+        // type: 'asset/inline' 代替url-loader
+        // type: 'asset/source' 代替raw-loader
+        generator: {
+          filename: 'images/[hash][ext]'
+        }
+      },
+      // font
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        type: 'asset',
       },
     ],
   },

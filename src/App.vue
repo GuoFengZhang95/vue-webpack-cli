@@ -2,6 +2,9 @@
   <div id="app">
     {{ awaitNum }}
     <div class="box"></div>
+    <img src="@/assets/images/404.png" alt="">
+    <img src="@/assets/images/logo.svg" alt="">
+    <img src="@/assets/images/bg_jiexuqiu.svg" alt="">
     <router-view />
   </div>
 </template>
@@ -12,39 +15,13 @@ export default {
   data() {
     return {
       awaitNum: 0,
+      img: require("@/assets/images/404.png"),
     };
   },
-  async mounted() {
-    const  fn =   () => {
-      console.log(1)
-    }
-    let map = new Map()
-    let bool = [1, 2, 3].includes(1)
-    let p = new Promise((resolve, reject) => {})
-    let httpRes = await this.http()
-
-    console.log('箭头函数', fn);
-    console.log('Map', map)
-    console.log('includes',bool)
-    console.log('Promise', p)
-    console.log('Vuex', this.$store)
-    console.log('await', httpRes)
-    this.awaitNum = httpRes
-    const person = {
-      name: 'zgf'
-    }
-    let name = person.name ?? 'zevan'
-    console.log(name)
+  mounted() {
+    console.log(this.img)
   },
-  methods: {
-    http() {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve(1)
-        }, 2000)
-      })
-    }
-  }
+  methods: {},
 };
 </script>
 
