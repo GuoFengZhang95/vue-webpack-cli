@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin') //生成dist文件夹下的html模板
 const VueLoaderPlugin = require('vue-loader/lib/plugin') //将定义过的其它规则复制并应用到 .vue 文件里相应语言块
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -73,7 +72,6 @@ module.exports = {
     ],
   },
   plugins: [
-
     new HtmlWebpackPlugin({
       filename: 'index.html', //生成的文件名称
       template: path.resolve(__dirname, '../src/index.html'), //模版源绝对路径

@@ -2,16 +2,23 @@ const baseConfig = require('./webpack.base.config')
 const { merge } = require('webpack-merge')
 const openInEditor = require('launch-editor-middleware')
 const webpack = require('webpack')
+const { getPort } = require('./utils')
+getPort
 
-module.exports = entry => {
+
+
+
+module.exports = async entry => {
   const { mode, env } = entry
+  const portInfo = await getPort({ port: 443, host: 'webpack.17m17.com' })
+  console.log(portInfo)
   const devServerConfig = {
     mode: 'development',
     devtool: 'eval-source-map',
     // devtool: 'eval-cheap-source-map',
     devServer: {
-      host: 'webpack.17m17.com',
-      port: 443,
+      host: portInfo.host,
+      port: portInfo.port,
       hot: true,
       open: false,
       historyApiFallback: true,
