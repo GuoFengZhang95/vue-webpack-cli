@@ -1,8 +1,9 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin') //生成dist文件夹下的html模板
 const VueLoaderPlugin = require('vue-loader/lib/plugin') //将定义过的其它规则复制并应用到 .vue 文件里相应语言块
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
+const WebpackBar = require('webpackbar')
 module.exports = {
   entry: [path.resolve(__dirname, '../src/main.js')],
   output: {
@@ -87,5 +88,6 @@ module.exports = {
       ],
     }),
     new VueLoaderPlugin(),
+    new WebpackBar()
   ],
 }
