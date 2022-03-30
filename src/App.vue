@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    {{ awaitNum }}
+    {{ awaitNu }}
     <div class="box"></div>
-    <img src="@/assets/images/404.png" alt="">
-    <img src="@/assets/images/logo.svg" alt="">
-    <img src="@/assets/images/bg_jiexuqiu.svg" alt="">
-    <router-view />
+    <img src="@/assets/images/404.png" alt="" />
+    <img src="@/assets/images/logo.svg" alt="" />
+    <img src="@/assets/images/bg_jiexuqiu.svg" alt="" />
+    <router-view></router-view>
+    <div></div>
   </div>
 </template>
 
