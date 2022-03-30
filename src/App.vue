@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    {{ awaitNu }}
+    {{ awaitNum }}
     <div class="box"></div>
     <img src="@/assets/images/404.png" alt="" />
     <img src="@/assets/images/logo.svg" alt="" />
@@ -17,10 +17,12 @@ export default {
     return {
       awaitNum: 0,
       img: require('@/assets/images/404.png'),
+      dom: <div style="color:red">123</div>
     }
   },
   mounted() {
     console.log(this.img)
+    console.log(this.dom)
   },
   methods: {},
 }

@@ -84,7 +84,7 @@ module.exports = {
       extensions: ['js', 'vue'],
       exclude: ['node_modules'],
       threads: 4,
-      fix: false
+      fix: true
     }),
     new VueLoaderPlugin(),
     new WebpackBar()
