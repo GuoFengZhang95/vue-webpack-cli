@@ -79,12 +79,12 @@ module.exports = async entry => {
       },
       setupMiddlewares: (middlewares, devServer) => {
         if (!devServer) {
-          throw new Error('webpack-dev-server is not defined');
+          throw new Error('webpack-dev-server is not defined')
         }
         // 指定在那种编辑器中打开组件
         devServer.app.use('/__open-in-editor', openInEditor('code'))
         return middlewares
-      }
+      },
     },
     module: {
       rules: [
@@ -101,8 +101,8 @@ module.exports = async entry => {
     plugins: [
       new Webpack.DefinePlugin({
         'process.env.MODE': JSON.stringify(mode),
-        'process.env.ENV': JSON.stringify(env)
-      })
+        'process.env.ENV': JSON.stringify(env),
+      }),
     ],
   }
   return merge(devServerConfig, BaseConfig)

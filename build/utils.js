@@ -1,7 +1,7 @@
 const net = require('net')
 const checkAvailablePort = ({ port, host } = {}) => {
   return new Promise((resolve, reject) => {
-    const server = net.createServer();
+    const server = net.createServer()
     server.unref()
     server.on('error', reject)
     server.listen(port, host, () => {
@@ -26,11 +26,9 @@ async function getPort({ port, host } = {}) {
   }
   return {
     port,
-    host
+    host,
   }
 }
 module.exports = {
-  getPort
+  getPort,
 }
-
-

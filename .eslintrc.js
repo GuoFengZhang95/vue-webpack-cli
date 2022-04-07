@@ -1,4 +1,3 @@
-
 module.exports = {
   root: true, // 根节点
   /**关键字指定你想启用的环境 */
@@ -9,35 +8,32 @@ module.exports = {
     node: true,
   },
   /**继承的配置规则集 均为default配置 */
-  extends: [
-    'eslint:recommended',
-    'plugin:vue/recommended'
-  ],
+  extends: ['eslint:recommended', 'plugin:vue/recommended'],
   plugins: ['eslint-plugin-vue'],
-  parser: 'vue-eslint-parser',// 解析器
+  parser: 'vue-eslint-parser', // 解析器
   parserOptions: {
     ecmaVersion: 6,
     parser: '@babel/eslint-parser',
     sourceType: 'module', // 启用 ESModule
     ecmaFeatures: {
       // 关闭 jsx 语法校验, 默认为 true
-      jsx: false
-    }
+      jsx: false,
+    },
   },
   /**可以继承配置的默认值进行修改
    * 规则 'off' 0 = 关闭 'warn' 1 = 警告 'error' 2 = 报错
    */
   rules: {
     /**严格模式 */
-    'strict': 2,
+    strict: 2,
     /**禁止定义未使用 */
     'no-unused-vars': 2,
     /**2空格缩进 */
-    'indent': ['error', 2],
+    indent: ['error', 2],
     /**强制js单引号 */
-    'quotes': [2, 'single'],
+    quotes: [2, 'single'],
     /**禁用分号结尾 */
-    'semi': [2, 'never'],
+    semi: [2, 'never'],
     /**块语句中的内容不能为空 */
     'no-empty': 2,
     /**禁止出现无法执行到的语句 */
@@ -55,13 +51,16 @@ module.exports = {
     /**可以使用debugger */
     'no-debugger': 0,
     /**函数()前不加空格 */
-    'space-before-function-paren': ['error', {
-      'anonymous': 'never',
-      'named': 'never',
-      'asyncArrow': 'never'
-    }],
+    'space-before-function-paren': [
+      'error',
+      {
+        anonymous: 'never',
+        named: 'never',
+        asyncArrow: 'never',
+      },
+    ],
     /**运算符周围有空格 */
-    'space-infix-ops': ['error', { 'int32Hint': false }],
+    'space-infix-ops': ['error', { int32Hint: false }],
     /**括号内左右不能有空格 */
     'space-in-parens': ['error', 'never'],
     /**大括号缩进风格 */
@@ -74,10 +73,12 @@ module.exports = {
     'object-property-newline': ['error'],
     /**一元操作符之前或之后存在空格 */
     'space-unary-ops': [
-      2, {
+      2,
+      {
         words: true,
         nonwords: false,
-      }],
+      },
+    ],
     /**禁止属性前有空白 */
     'no-whitespace-before-property': 2,
     /**强制关键字周围空格的一致性 */
@@ -134,37 +135,46 @@ module.exports = {
     'vue/html-quotes': ['error', 'double', { avoidEscape: false }],
     /**组件可以直接使用v-model */
     'vue/no-v-model-argument': 2,
-    'vue/html-closing-bracket-newline': [2, {
-      singleline: 'never',
-      multiline: 'always'
-    }],
+    'vue/html-closing-bracket-newline': [
+      2,
+      {
+        singleline: 'never',
+        multiline: 'always',
+      },
+    ],
     /**prop强制使用驼峰 */
     'vue/prop-name-casing': [2, 'camelCase'],
     /**插值表达式内前后有一个空格 */
     'vue/mustache-interpolation-spacing': [2, 'always'],
     /**单行最多五个标签，多行事每行只能有一个标签 */
-    'vue/max-attributes-per-line': ['error', {
-      singleline: {
-        'max': 5
+    'vue/max-attributes-per-line': [
+      'error',
+      {
+        singleline: {
+          max: 5,
+        },
+        multiline: {
+          max: 1,
+        },
       },
-      multiline: {
-        'max': 1
-      }
-    }],
+    ],
     /**多行html标签的内容前后强制换行 */
     'vue/multiline-html-element-content-newline': 2,
     /**单行html标签的内容前后强制换 */
     'vue/singleline-html-element-content-newline': 2,
     /**标签闭合原则 */
-    'vue/html-self-closing': ['error', {
-      'html': {
-        void: 'always',
-        normal: 'never',
-        component: 'never'
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'always',
+          normal: 'never',
+          component: 'never',
+        },
+        svg: 'always',
+        math: 'always',
       },
-      svg: 'always',
-      math: 'always'
-    }],
+    ],
     /**.vue文件每个部分不能位空   */
     'vue/no-empty-component-block': 0,
     /**组件名使用连接符 */
@@ -173,5 +183,5 @@ module.exports = {
     'vue/no-side-effects-in-computed-properties': 0,
     /**禁止v-html防止xss攻击 */
     'vue/no-v-html': 0,
-  }
+  },
 }

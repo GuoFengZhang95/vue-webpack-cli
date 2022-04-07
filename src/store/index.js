@@ -8,16 +8,11 @@ import app from './modules/app'
 
 const store = {
   modules: {
-    app
+    app,
   },
   getters,
-  state: {
-
-  },
-  mutations: {
-
-  },
+  state: {},
+  mutations: {},
 }
-
 
 export default new Vuex.Store(store)

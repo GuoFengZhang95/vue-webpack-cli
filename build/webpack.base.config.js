@@ -25,11 +25,11 @@ module.exports = {
         test: /\.m?js$/,
         include: [
           path.resolve(__dirname, '../src'),
-          path.resolve(__dirname, '../node_modules/vuex')
+          path.resolve(__dirname, '../node_modules/vuex'),
         ],
         use: {
-          loader: "babel-loader",
-        }
+          loader: 'babel-loader',
+        },
       },
       // vue
       {
@@ -59,8 +59,8 @@ module.exports = {
         // type: 'asset/inline' 代替url-loader
         // type: 'asset/source' 代替raw-loader
         generator: {
-          filename: 'images/[hash][ext]'
-        }
+          filename: 'images/[hash][ext]',
+        },
       },
       // font
       {
@@ -87,9 +87,9 @@ module.exports = {
       extensions: ['js', 'vue'],
       exclude: ['node_modules'],
       threads: 4,
-      fix: true
+      fix: true,
     }),
     new VueLoaderPlugin(),
-    new WebpackBar()
+    new WebpackBar(),
   ],
 }

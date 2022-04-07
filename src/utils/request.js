@@ -9,7 +9,10 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   config => {
-    config.params = Object.assign({}, config.params ? config.params : { t: new Date().getTime() })//兼容IE请求缓存
+    config.params = Object.assign(
+      {},
+      config.params ? config.params : { t: new Date().getTime() }
+    ) //兼容IE请求缓存
     return config
   },
   error => {

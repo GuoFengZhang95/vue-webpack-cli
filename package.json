@@ -10,7 +10,8 @@
     "build:dev": "webpack  --env mode=server env=dev --config ./build/webpack.build.config.js",
     "build:test": "webpack  --env mode=server env=test --config ./build/webpack.build.config.js",
     "build:pre": "webpack  --env mode=server env=pre --config ./build/webpack.build.config.js",
-    "build:prod": "webpack  --env mode=server env=prod --config ./build/webpack.build.config.js"
+    "build:prod": "webpack  --env mode=server env=prod --config ./build/webpack.build.config.js",
+    "prettier": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -41,6 +42,7 @@
     "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.4.3",
+    "prettier": "2.6.2",
     "resize-observer-polyfill": "^1.5.1",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",

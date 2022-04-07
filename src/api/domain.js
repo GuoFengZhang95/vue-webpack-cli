@@ -24,7 +24,7 @@ const domain = {
     App_Web_Base_Url: `https://app-web${ENV}.17m17.com`,
     Login_Base_Url: `https://login-api${ENV}.mumuxili.com`,
     Yqmm_Service_Base_Url: `https://yqmm-service${ENV}.mumuxili.com`,
-  }
+  },
 }
 
 export default domain[MODE]

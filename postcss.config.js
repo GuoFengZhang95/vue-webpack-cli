@@ -5,4 +5,4 @@ module.exports = {
     // PostCSS 插件
     'postcss-preset-env',
   ],
-};
+}

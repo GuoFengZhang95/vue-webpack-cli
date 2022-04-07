@@ -5,15 +5,14 @@
 </template>
 
 <script>
-export default {
-  name: 'App',
-  data() {
-    return {}
-  },
-  mounted() {},
-  methods: {},
-}
+  export default {
+    name: 'App',
+    data() {
+      return {}
+    },
+    mounted() {},
+    methods: {},
+  }
 </script>
 
-<style lang="less">
-</style>
+<style lang="less"></style>
