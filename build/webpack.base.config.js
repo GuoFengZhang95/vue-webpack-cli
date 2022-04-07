@@ -23,7 +23,10 @@ module.exports = {
       // js
       {
         test: /\.m?js$/,
-        exclude: /node_modules/,
+        include: [
+          path.resolve(__dirname, '../src'),
+          path.resolve(__dirname, '../node_modules/vuex')
+        ],
         use: {
           loader: "babel-loader",
         }
