@@ -21,7 +21,7 @@ module.exports = {
     },
   },
   /**可以继承配置的默认值进行修改
-   * 规则 'off' 0 = 关闭 'warn' 1 = 警告 'error' 2 = 报错
+   * 规则 'off' 0 = 关闭 'warn' 1 = 警告 2 2 = 报错
    */
   rules: {
     /**严格模式 */
@@ -29,7 +29,13 @@ module.exports = {
     /**禁止定义未使用 */
     'no-unused-vars': 2,
     /**2空格缩进 */
-    indent: ['error', 2],
+    indent: [
+      2,
+      2,
+      {
+        SwitchCase: 1,
+      },
+    ],
     /**强制js单引号 */
     quotes: [2, 'single'],
     /**禁用分号结尾 */
@@ -41,7 +47,14 @@ module.exports = {
     /**禁止直接使用对象的hasOwnProperty */
     'no-prototype-builtins': 2,
     /**最多连续2个空行，文件首尾最多一个空行 */
-    'no-multiple-empty-lines': [2, { max: 2, maxEOF: 1, maxBOF: 1 }],
+    'no-multiple-empty-lines': [
+      2,
+      {
+        max: 2,
+        maxEOF: 1,
+        maxBOF: 1,
+      },
+    ],
     /**要求 generator 函数内有 yield */
     'require-yield': 2,
     /**关闭不正常的空行 */
@@ -52,25 +65,30 @@ module.exports = {
     'no-debugger': 0,
     /**函数()前不加空格 */
     'space-before-function-paren': [
-      'error',
+      0,
       {
-        anonymous: 'never',
+        anonymous: 'always',
         named: 'never',
         asyncArrow: 'never',
       },
     ],
     /**运算符周围有空格 */
-    'space-infix-ops': ['error', { int32Hint: false }],
+    'space-infix-ops': [2, { int32Hint: false }],
     /**括号内左右不能有空格 */
-    'space-in-parens': ['error', 'never'],
+    'space-in-parens': [2, 'never'],
     /**大括号缩进风格 */
-    'brace-style': ['error', '1tbs'],
+    'brace-style': [2, '1tbs'],
     /**大括号前有空格 */
-    'space-before-blocks': ['error', 'always'],
+    'space-before-blocks': [2, 'always'],
     /**强制在对象字面量的键和值之间使用一致的空格 */
-    'key-spacing': ['error'],
+    'key-spacing': [2],
     /**对象属性强制换行 */
-    'object-property-newline': ['error'],
+    'object-property-newline': [
+      0,
+      {
+        allowAllPropertiesOnSameLine: true,
+      },
+    ],
     /**一元操作符之前或之后存在空格 */
     'space-unary-ops': [
       2,
@@ -82,13 +100,18 @@ module.exports = {
     /**禁止属性前有空白 */
     'no-whitespace-before-property': 2,
     /**强制关键字周围空格的一致性 */
-    'keyword-spacing': ['error', { before: true, before: true }],
+    'keyword-spacing': [
+      2,
+      {
+        before: true,
+      },
+    ],
     /**console可用 */
     'no-console': 0,
     /**禁止使用异步函数作为 Promise executor */
     'no-async-promise-executor': 0,
     /**禁止定义未使用 */
-    'vue/no-unused-vars': 2,
+    'vue/no-unused-vars': 0,
     /**使用推荐的属性顺序 */
     'vue/attributes-order': 2,
     /**禁止子组件直接操作prop的值 */
@@ -132,7 +155,7 @@ module.exports = {
     /**标签必须闭合 */
     'vue/html-end-tags': 2,
     /**template中使用双引号 */
-    'vue/html-quotes': ['error', 'double', { avoidEscape: false }],
+    'vue/html-quotes': [2, 'double', { avoidEscape: false }],
     /**组件可以直接使用v-model */
     'vue/no-v-model-argument': 2,
     'vue/html-closing-bracket-newline': [
@@ -148,7 +171,7 @@ module.exports = {
     'vue/mustache-interpolation-spacing': [2, 'always'],
     /**单行最多五个标签，多行事每行只能有一个标签 */
     'vue/max-attributes-per-line': [
-      'error',
+      2,
       {
         singleline: {
           max: 5,
@@ -161,10 +184,10 @@ module.exports = {
     /**多行html标签的内容前后强制换行 */
     'vue/multiline-html-element-content-newline': 2,
     /**单行html标签的内容前后强制换 */
-    'vue/singleline-html-element-content-newline': 2,
+    'vue/singleline-html-element-content-newline': 0,
     /**标签闭合原则 */
     'vue/html-self-closing': [
-      'error',
+      2,
       {
         html: {
           void: 'always',
@@ -173,6 +196,26 @@ module.exports = {
         },
         svg: 'always',
         math: 'always',
+      },
+    ],
+    'vue/script-indent': [
+      0,
+      2,
+      {
+        baseIndent: 1,
+        switchCase: 1,
+        ignores: [],
+      },
+    ],
+    'vue/html-indent': [
+      0,
+      2,
+      {
+        attribute: 1,
+        baseIndent: 1,
+        closeBracket: 0,
+        alignAttributesVertically: true,
+        ignores: [],
       },
     ],
     /**.vue文件每个部分不能位空   */
@@ -184,4 +227,19 @@ module.exports = {
     /**禁止v-html防止xss攻击 */
     'vue/no-v-html': 0,
   },
+  overrides: [
+    /**避免和.vue文件冲突 */
+    {
+      files: ['*.vue'],
+      rules: {
+        indent: 'off',
+      },
+    },
+    {
+      files: ['*.vue'],
+      rules: {
+        'no-unused-vars': 'off',
+      },
+    },
+  ],
 }

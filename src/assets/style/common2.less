@@ -1,0 +1,350 @@
+@import './antDesignVue2.less';
+@import './iconfont.css';
+@primary-color: #00c7db;
+
+.ant-btn-primary {
+  text-shadow: none;
+  box-shadow: none;
+}
+.col-item {
+  display: flex;
+  flex-direction: column;
+  line-height: 22px;
+
+  span {
+    font-size: 13px;
+    color: #999;
+
+    i {
+      color: #000;
+    }
+
+    em {
+      font-style: normal;
+      color: #0cc;
+      margin-left: 15px;
+      cursor: pointer;
+    }
+  }
+}
+
+.clearfix {
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.mr5 {
+  margin-right: 5px;
+}
+
+.red {
+  color: red;
+}
+.edit-error {
+  border: 1px solid red;
+}
+.ml5 {
+  margin-left: 5px;
+}
+
+.mt5 {
+  margin-top: 5px;
+}
+
+.m15 {
+  margin: 15px;
+}
+
+.ml15 {
+  margin-left: 15px;
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.m10 {
+  margin: 10px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mlr10 {
+  margin: 0 10px;
+}
+
+.mtb10 {
+  margin: 10px 0;
+}
+
+.p10 {
+  padding: 10px;
+}
+
+.pt10 {
+  padding-top: 10px;
+}
+
+.pb10 {
+  padding-bottom: 10px;
+}
+
+.pr10 {
+  padding-right: 10px;
+}
+
+.pl10 {
+  padding-left: 10px;
+}
+
+.plr10 {
+  padding: 0 10px;
+}
+
+.ptb10 {
+  padding: 10px 0;
+}
+
+.plr20 {
+  padding: 0 20px;
+}
+
+.ptb20 {
+  padding: 20px 0;
+}
+
+.w250 {
+  width: 250px;
+}
+
+.w64 {
+  width: 64px;
+}
+.w100 {
+  width: 100%;
+}
+.h100 {
+  height: 100%;
+}
+.lr {
+  float: left;
+}
+.input-clear {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  &:focus {
+    box-shadow: none;
+  }
+}
+.table-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.table-action {
+  text-align: right;
+}
+
+.table-filter {
+  margin-bottom: 10px;
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .table-filter-main {
+    background: #f9f9f9;
+    border-radius: 3px;
+    padding: 15px 10px;
+  }
+}
+
+.screen-con {
+  margin: 12px 24px !important;
+}
+
+.screen {
+  .screen-input {
+    width: 300px !important;
+  }
+  .screen-btn {
+    width: 60px !important;
+  }
+}
+
+.ant-tabs-bar {
+  margin: 0;
+}
+
+h4.title {
+  padding-left: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #666;
+  position: relative;
+
+  &::before {
+    content: '';
+    width: 4px;
+    height: 14px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #0cc;
+  }
+}
+
+.detail-item {
+  margin: 0 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.no-border {
+  border: none;
+}
+
+.no-border-select {
+  .ant-select-selection {
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.cardBox {
+  padding: 16px 0 5px 16px;
+  .popoverCard {
+    width: calc(200vw * 0.3);
+    max-height: 128px;
+    padding-right: 16px;
+    padding-bottom: 0px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.6);
+    text-indent: 2em;
+    word-break: break-word;
+  }
+}
+
+.popoverCard-row {
+  overflow: hidden;
+  display: -webkit-box !important;
+  word-break: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  width: 100% !important;
+}
+
+.bottomText {
+  color: #ccc !important;
+  margin: 0;
+  padding-left: 4px;
+}
+
+.popoverCard::-webkit-scrollbar {
+  width: 5px;
+}
+
+.popoverCard::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+.popoverCard::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  background-color: #cccccc;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.popoverCard::-webkit-scrollbar-corner {
+  background: rgb(247, 245, 228);
+}
+.mce-tinymce {
+  box-shadow: none !important;
+}
+
+// 超出隐藏公共样式
+/* 单行文本超出显示省略号 */
+.show-line_1 {
+  /*超出部分隐藏*/
+  overflow: hidden;
+  /* 超出部分显示省略号 */
+  text-overflow: ellipsis;
+  /*规定段落中的文本不进行换行 */
+  white-space: nowrap;
+  /*英文单词折行*/
+  word-break: break-all;
+}
+
+/* 多行文本超出显示省略号 */
+.show-line_2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  /*英文单词折行*/
+  word-break: break-all;
+}
+
+/* 多行文本超出显示省略号 */
+.show-line_3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  /*英文单词折行*/
+  word-break: break-all;
+}
+// 修改页面滚动条样式
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #d9d9d9;
+}
+*::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  border-radius: 0;
+  background: transparent;
+}

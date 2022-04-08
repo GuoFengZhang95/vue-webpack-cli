@@ -1,4 +1,10 @@
+import { message } from 'ant-design-vue'
+// import router from '../router'
+
 import axios from 'axios'
+
+import { loginCheckJump } from '@/api/login.js'
+
 // ========== 创建axios实例 ==========
 const service = axios.create({
   // baseURL: '/test', // url = base url + request url
@@ -26,17 +32,50 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-    return res
+    if (Reflect.has(res, 'success')) {
+      return phpResHandle(res)
+    } else {
+      return javaResHandle(res)
+    }
   },
   error => {
-    // eslint-disable-next-line no-console
-    console.log('err' + error)
+    message.error('服务器内部错误', 2)
+    console.log('error' + error)
     return Promise.reject(error)
   }
 )
 
 function request(opts) {
   return service(opts)
+}
+
+function phpResHandle(res) {
+  if (res.success === false) {
+    // 登陆过期
+    if (res.msg === '登录超时,请重新登录') {
+      loginCheckJump()
+      return Promise.reject(res)
+    }
+    return res
+  } else {
+    return res
+  }
+}
+
+function javaResHandle(res) {
+  if (res.code !== '0') {
+    // 登陆过期
+    if (res.code === '100001') {
+      loginCheckJump()
+      return Promise.reject(res)
+    }
+    if (res.msg !== '暂无查看全部权限') {
+      message.error(res.msg, 2)
+    }
+    return res
+  } else {
+    return res
+  }
 }
 
 export default request

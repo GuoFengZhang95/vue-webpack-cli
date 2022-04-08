@@ -48,6 +48,23 @@ module.exports = {
           },
           {
             loader: 'less-loader',
+            options: {
+              lessOptions: {
+                modifyVars: {
+                  'primary-color': '#00C7DB',
+                },
+                javascriptEnabled: true,
+              },
+            },
+          },
+          {
+            loader: 'style-resources-loader',
+            options: {
+              patterns: [
+                path.resolve(__dirname, '../src/assets/style/mixins.less'),
+              ],
+              injector: 'prepend',
+            },
           },
         ],
       },
