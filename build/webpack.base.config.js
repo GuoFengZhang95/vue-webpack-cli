@@ -37,8 +37,9 @@ threadLoader.warmup(
     name: 'my-pool',
   },
   [
+    'less-loader',
     'babel-loader',
-    // 'vue-loader',
+    'vue-loader',
   ]
 )
 module.exports = {
@@ -65,9 +66,9 @@ module.exports = {
           path.resolve(__dirname, '../node_modules/vuex'),
         ],
         use: [
-          // {
-          //   loader: 'thread-loader',
-          // },
+          {
+            loader: 'thread-loader',
+          },
           {
             loader: 'babel-loader',
           },
@@ -77,9 +78,9 @@ module.exports = {
       {
         test: /\.vue$/,
         use: [
-          // {
-          //   loader: 'thread-loader'
-          // },
+          {
+            loader: 'thread-loader'
+          },
           {
             loader: 'vue-loader'
           },
@@ -94,6 +95,9 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
+          },
+          {
+            loader: 'thread-loader',
           },
           {
             loader: 'less-loader',
