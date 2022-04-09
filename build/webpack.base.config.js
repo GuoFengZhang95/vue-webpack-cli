@@ -4,6 +4,43 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') //将定义过的其它
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const ESLintPlugin = require('eslint-webpack-plugin')
+const threadLoader = require('thread-loader')
+threadLoader.warmup(
+  {
+    // the number of spawned workers, defaults to (number of cpus - 1) or
+    // fallback to 1 when require('os').cpus() is undefined
+    // workers: 4,
+
+    // number of jobs a worker processes in parallel
+    // defaults to 20
+    workerParallelJobs: 20,
+
+    // additional node.js arguments
+    workerNodeArgs: ['--max-old-space-size=1024'],
+
+    // Allow to respawn a dead worker pool
+    // respawning slows down the entire compilation
+    // and should be set to false for development
+    poolRespawn: false,
+
+    // timeout for killing the worker processes when idle
+    // defaults to 500 (ms)
+    // can be set to Infinity for watching builds to keep workers alive
+    poolTimeout: 500,
+
+    // number of jobs the poll distributes to the workers
+    // defaults to 200
+    // decrease of less efficient but more fair distribution
+    poolParallelJobs: 200,
+    // name of the pool
+    // can be used to create different pools with elsewise identical options
+    name: 'my-pool',
+  },
+  [
+    'babel-loader',
+    // 'vue-loader',
+  ]
+)
 module.exports = {
   entry: [path.resolve(__dirname, '../src/main.js')],
   output: {
@@ -16,7 +53,7 @@ module.exports = {
       // vue$: "vue/dist/vue.esm.js", //加上这一句
       '@': path.resolve(__dirname, '../src'),
     },
-    extensions: ['.vue', '.js', '.scss', '.json'],
+    extensions: ['.vue', '.js'],
   },
   module: {
     rules: [
@@ -27,14 +64,26 @@ module.exports = {
           path.resolve(__dirname, '../src'),
           path.resolve(__dirname, '../node_modules/vuex'),
         ],
-        use: {
-          loader: 'babel-loader',
-        },
+        use: [
+          // {
+          //   loader: 'thread-loader',
+          // },
+          {
+            loader: 'babel-loader',
+          },
+        ]
       },
       // vue
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        use: [
+          // {
+          //   loader: 'thread-loader'
+          // },
+          {
+            loader: 'vue-loader'
+          },
+        ]
       },
       // css
       {
