@@ -17,7 +17,10 @@ module.exports = entry => {
     devtool: env ? 'nosources-source-map' : false,
     optimization: {
       minimize: true, //生产模式下默认为true 执行优化操作
-      minimizer: [new CssMinimizerPlugin(), new TerserWebpackPlugin()],
+      minimizer: [
+        new CssMinimizerPlugin(),
+        new TerserWebpackPlugin()
+      ],
       splitChunks: {
         chunks: 'all',
         cacheGroups: {
@@ -31,6 +34,26 @@ module.exports = entry => {
             name: 'chunk-ant-design-vue', // 单独打包 ant-design-vue
             test: /[\\/]node_modules[\\/]_?ant-design-vue(.*)/, // 兼容cnpm
             priority: 20, //
+          },
+          lodash: {
+            name: 'lodash', // 单独打包 ant-design-vue
+            test: /[\\/]node_modules[\\/]_?lodash(.*)/,
+            priority: 30, //
+          },
+          vue: {
+            name: 'vue', // 单独打包 ant-design-vue
+            test: /[\\/]node_modules[\\/]vue/,
+            priority: 30, //
+          },
+          vuex: {
+            name: 'vuex', // 单独打包 ant-design-vue
+            test: /[\\/]node_modules[\\/]vuex/,
+            priority: 40, //
+          },
+          vueRouter: {
+            name: 'vue-router', // 单独打包 ant-design-vue
+            test: /[\\/]node_modules[\\/]vue-router/,
+            priority: 50, //
           },
         },
       },
