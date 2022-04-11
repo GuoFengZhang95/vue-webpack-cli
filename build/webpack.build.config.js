@@ -22,40 +22,46 @@ module.exports = entry => {
         new TerserWebpackPlugin()
       ],
       splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          libs: {
-            name: 'chunk-libs',
-            test: /[\\/]node_modules[\\/]/,
-            priority: 10,
-            chunks: 'initial', // only package third parties that are initially dependent
-          },
-          antDesignVue: {
-            name: 'chunk-ant-design-vue', // 单独打包 ant-design-vue
-            test: /[\\/]node_modules[\\/]_?ant-design-vue(.*)/, // 兼容cnpm
-            priority: 20, //
-          },
-          lodash: {
-            name: 'lodash', // 单独打包 ant-design-vue
-            test: /[\\/]node_modules[\\/]_?lodash(.*)/,
-            priority: 30, //
-          },
-          vue: {
-            name: 'vue', // 单独打包 ant-design-vue
-            test: /[\\/]node_modules[\\/]vue/,
-            priority: 30, //
-          },
-          vuex: {
-            name: 'vuex', // 单独打包 ant-design-vue
-            test: /[\\/]node_modules[\\/]vuex/,
-            priority: 40, //
-          },
-          vueRouter: {
-            name: 'vue-router', // 单独打包 ant-design-vue
-            test: /[\\/]node_modules[\\/]vue-router/,
-            priority: 50, //
-          },
-        },
+        chunks: 'async',//默认是 async 拆分异步包 initial all
+        minSize: 20000,//chunks最小值，会影响cacheGroups，实际小于20000的分包将无法从主包中拆出
+        // cacheGroups: {
+        //   libs: {
+        //     name: 'chunk-libs',
+        //     test: /[\\/]node_modules[\\/]/,
+        //     priority: 0,
+        //     chunks: 'all',
+        //   },
+        //   antDesignVue: {
+        //     name: 'chunk-ant-design-vue',
+        //     test: /[\\/]node_modules[\\/]_?ant-design-vue(.*)/, // 兼容cnpm
+        //     priority: 5,
+        //     chunks: 'all',
+        //   },
+        //   lodash: {
+        //     name: 'chunk-lodash',
+        //     test: /[\\/]node_modules[\\/]_?lodash(.*)/,
+        //     priority: 5,
+        //     chunks: 'all',
+        //   },
+        //   vue: {
+        //     name: 'chunk-vue',
+        //     test: /[\\/]node_modules[\\/]vue/,
+        //     priority: 5,
+        //     chunks: 'all'
+        //   },
+        //   vueRouter: {
+        //     name: 'chunk-vue-router',
+        //     test: /[\\/]node_modules[\\/]vue-router/,
+        //     priority: 5,
+        //     chunks: 'all'
+        //   },
+        //   moment: {
+        //     name: 'chunk-moment',
+        //     test: /[\\/]node_modules[\\/]moment/,
+        //     priority: 5,
+        //     chunks: 'all'
+        //   },
+        // },
       },
     },
     module: {

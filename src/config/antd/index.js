@@ -10,19 +10,15 @@ import {
   Checkbox,
   Badge,
   Tabs,
-  List,
   Form,
   FormModel,
   Select,
-  Slider,
   Table,
   Modal,
   Row,
   Col,
   Spin,
   Descriptions,
-  Upload,
-  Timeline,
   DatePicker,
   Drawer,
   Popconfirm,
@@ -43,7 +39,6 @@ import {
   Transfer,
   TimePicker,
   Carousel,
-  Alert,
   Switch,
 } from 'ant-design-vue'
 
@@ -77,15 +72,15 @@ Vue.use(Popover)
 Vue.use(Pagination)
 Vue.use(Row)
 Vue.use(Select)
-Vue.use(Slider)
+// Vue.use(Slider)
 Vue.use(Spin)
 Vue.use(Steps)
 Vue.use(Tabs)
 Vue.use(Table)
-Vue.use(Timeline)
+// Vue.use(Timeline)
 Vue.use(Tooltip)
-Vue.use(Upload)
-Vue.use(List)
+// Vue.use(Upload)
+// Vue.use(List)
 Vue.use(Form)
 Vue.use(FormModel)
 Vue.use(Tree)
@@ -99,7 +94,7 @@ Vue.use(TreeSelect)
 Vue.use(Transfer)
 Vue.use(TimePicker)
 Vue.use(Carousel)
-Vue.use(Alert)
+// Vue.use(Alert)
 Vue.use(Switch)
 
 Vue.prototype.$message = message
