@@ -39,17 +39,30 @@
         console.timeEnd('testTimeConsume')
       },
       indexedDBInit() {
-        const IDBFactory = window.indexedDB
-        console.log(IDBFactory)
-        const IDBRequest = IDBFactory.open('UserDB', 1)
-        console.log(IDBRequest)
-        IDBRequest.onerror = function(e) {
+        let db = null
+        let transaction = null
+        const IDBRequest = window.indexedDB.open('UserDB', 1)
+        IDBRequest.onerror = function (e) {
           console.log('打开数据库失败', e)
         }
-        IDBRequest.onsuccess = function(e) {
-          console.log('打开数据库成功', e)
+        IDBRequest.onsuccess = function (e) {
+          console.log('打开数据库成功')
+          db = IDBRequest.result
+          console.log(db)
         }
-      }
+        IDBRequest.onupgradeneeded = function (e) {
+          console.log(e)
+          const objectStore = db.createObjectStore('toDoList', {
+            keyPath: 'taskTitle',
+          })
+          objectStore.createIndex('hours', 'hours', { unique: false })
+          objectStore.createIndex('minutes', 'minutes', { unique: false })
+          objectStore.createIndex('day', 'day', { unique: false })
+          objectStore.createIndex('month', 'month', { unique: false })
+          objectStore.createIndex('year', 'year', { unique: false })
+          objectStore.createIndex('notified', 'notified', { unique: false })
+        }
+      },
     },
   }
 </script>
