@@ -6,7 +6,7 @@ const { getPort } = require('./utils')
 
 module.exports = async entry => {
   const { mode, env } = entry
-  const portInfo = await getPort({ port: 443, host: 'localhost' })
+  const portInfo = await getPort({ port: 8080, host: 'localhost' })
   const devServerConfig = {
     mode: 'development',
     devtool: 'eval-source-map',
@@ -23,7 +23,7 @@ module.exports = async entry => {
         progress: true,
         reconnect: true,
       },
-      server: 'https',
+      server: 'http',
       compress: true,
       proxy: {
         '/api': {

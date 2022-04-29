@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <button @click="$router.push({name: 'WebStorage'})">WebStorage</button>
     <router-view></router-view>
   </div>
 </template>
@@ -10,7 +11,9 @@
     data() {
       return {}
     },
-    async mounted() {},
+    async mounted() {
+      console.log('App mounted')
+    },
     methods: {},
   }
 </script>
