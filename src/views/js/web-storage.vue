@@ -14,18 +14,19 @@
     computed: {},
     watch: {},
     mounted() {
-      this.testMaxLocalStorage()
-      this.testTimeConsume()
+      // this.testLocalStorageLimit()
+      // this.testLocalStorageTimeConsume()
+      this.indexedDBInit()
     },
     methods: {
-      testMaxLocalStorage() {
+      testLocalStorageLimit() {
         let data = ''
         for (let i = 0; i < 1024 * 1024 * 1; i++) {
           data += 'a'
         }
         localStorage.setItem('testMaxLocalStorage', data)
       },
-      testTimeConsume() {
+      testLocalStorageTimeConsume() {
         let data = ''
         for (let i = 0; i < 1024 * 1024; i++) {
           data += 'b'
@@ -37,6 +38,18 @@
         }
         console.timeEnd('testTimeConsume')
       },
+      indexedDBInit() {
+        const IDBFactory = window.indexedDB
+        console.log(IDBFactory)
+        const IDBRequest = IDBFactory.open('UserDB', 1)
+        console.log(IDBRequest)
+        IDBRequest.onerror = function(e) {
+          console.log('打开数据库失败', e)
+        }
+        IDBRequest.onsuccess = function(e) {
+          console.log('打开数据库成功', e)
+        }
+      }
     },
   }
 </script>
