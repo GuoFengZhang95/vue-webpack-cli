@@ -3,7 +3,7 @@ import { message } from 'ant-design-vue'
 
 import axios from 'axios'
 
-import { loginCheckJump } from '@/api/login.js'
+import { loginCheckJump } from '@/api/index.js'
 
 // ========== 创建axios实例 ==========
 const service = axios.create({
@@ -39,7 +39,7 @@ service.interceptors.response.use(
     }
   },
   error => {
-    message.error('服务器内部错误', 2)
+    message.error('网络异常', 2)
     console.log('error' + error)
     return Promise.reject(error)
   }

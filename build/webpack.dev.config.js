@@ -6,7 +6,7 @@ const { getPort } = require('./utils')
 
 module.exports = async entry => {
   const { mode, env } = entry
-  const portInfo = await getPort({ port: 443, host: 'mysaas.17m17.com' })
+  const portInfo = await getPort({ port: 443, host: 'localhost' })
   const devServerConfig = {
     mode: 'development',
     devtool: 'eval-source-map',
@@ -26,50 +26,10 @@ module.exports = async entry => {
       server: 'https',
       compress: true,
       proxy: {
-        '/mall-api': {
-          target: `https://mall-api${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/mall-api': '' },
-        },
-        '/vip-api': {
-          target: `https://vip${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/vip-api': '' },
-        },
-        '/login-api': {
-          target: `https://login-api${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/login-api': '' },
-        },
-        '/api-api': {
+        '/api': {
           target: `https://api${env}.mumuxili.com`,
           changeOrigin: true,
-          pathRewrite: { '^/api-api': '' },
-        },
-        '/service-login-api': {
-          target: `https://login${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/service-login-api': '' },
-        },
-        '/mis-service': {
-          target: `https://mis-service${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/mis-service': '' },
-        },
-        '/yqmm-api': {
-          target: `https://yqmm-api${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/yqmm-api': '' },
-        },
-        '/app-web-api': {
-          target: `https://app-web${env}.17m17.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/app-web-api': '' },
-        },
-        '/yqmm-service-api': {
-          target: `https://yqmm-service${env}.mumuxili.com`,
-          changeOrigin: true,
-          pathRewrite: { '^/yqmm-service-api': '' },
+          pathRewrite: { '^/mall-api': '' },
         },
       },
       setupMiddlewares: (middlewares, devServer) => {

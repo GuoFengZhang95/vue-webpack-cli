@@ -1,5 +1,0 @@
-export { loadingMix } from './loading'
-export { tableMix } from './mumuTable'
-export { yqmmBusinessMix } from './yqmmBusiness'
-export { yunfuMix } from './yunfu'
-export { equityAuthMix } from './equityAuth'
