@@ -16,7 +16,7 @@
     mounted() {
       // this.testLocalStorageLimit()
       // this.testLocalStorageTimeConsume()
-      this.indexedDBInit()
+      // this.indexedDBInit()
     },
     methods: {
       testLocalStorageLimit() {
@@ -24,43 +24,49 @@
         for (let i = 0; i < 1024 * 1024 * 1; i++) {
           data += 'a'
         }
-        localStorage.setItem('testMaxLocalStorage', data)
+        localStorage.setItem('testLocalStorageLimit', data)
       },
       testLocalStorageTimeConsume() {
-        let data = ''
-        for (let i = 0; i < 1024 * 1024; i++) {
-          data += 'b'
+        console.time('testLocalStorageTimeConsume')
+        for (let i = 0; i < 10000 * 5; i++) {
+          let data = {id: i, name: '张国峰', age: 18}
+          localStorage.setItem(`testLocalStorageTimeConsume-${i}`, JSON.stringify(data))
         }
-        console.time('testTimeConsume')
-        for (let i = 0; i < 1000; i++) {
-          localStorage.setItem('testTimeConsume', data)
-          localStorage.removeItem('testTimeConsume')
-        }
-        console.timeEnd('testTimeConsume')
+        console.timeEnd('testLocalStorageTimeConsume')
       },
       indexedDBInit() {
         let db = null
-        let transaction = null
-        const IDBRequest = window.indexedDB.open('UserDB', 1)
+        const IDBRequest = window.indexedDB.open('SchoolDb', 1)
         IDBRequest.onerror = function (e) {
-          console.log('打开数据库失败', e)
+          console.log('onerror', e)
         }
         IDBRequest.onsuccess = function (e) {
-          console.log('打开数据库成功')
           db = IDBRequest.result
-          console.log(db)
+          console.log('success', db)
+          // 插入数据
+          console.time('testIndexDBTimeConsume')
+          let trans = db.transaction('student', 'readwrite').objectStore('student')
+          for (let i = 0; i < 10000 * 5; i++) {
+            trans.add({id: i, name: '张国峰', age: 18})
+          }
+          console.timeEnd('testIndexDBTimeConsume')
+          trans.onsuccess = function(e) {
+            console.log('trans.onsuccess', e)
+          }
+          trans.onerror = function(e) {
+            console.log('trans.onerror', e)
+          }
         }
         IDBRequest.onupgradeneeded = function (e) {
-          console.log(e)
-          const objectStore = db.createObjectStore('toDoList', {
-            keyPath: 'taskTitle',
+          db = IDBRequest.result
+          console.log('onupgradeneeded', db)
+          const objectStore = db.createObjectStore('student', {
+            keyPath: 'id',
           })
-          objectStore.createIndex('hours', 'hours', { unique: false })
-          objectStore.createIndex('minutes', 'minutes', { unique: false })
-          objectStore.createIndex('day', 'day', { unique: false })
-          objectStore.createIndex('month', 'month', { unique: false })
-          objectStore.createIndex('year', 'year', { unique: false })
-          objectStore.createIndex('notified', 'notified', { unique: false })
+          // 创建索引
+          objectStore.createIndex('id', 'id', { unique: true })
+          objectStore.createIndex('name', 'name', { unique: false })
+          objectStore.createIndex('age', 'age', { unique: false })
         }
       },
     },
