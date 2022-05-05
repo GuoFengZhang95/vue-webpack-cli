@@ -1,8 +1,8 @@
 {
-  "name": "vue-template-cms",
+  "name": "vue2-webpack5-cli",
   "version": "1.0.0",
   "description": "",
-  "private": false,
+  "private": "true",
   "scripts": {
     "dev": "webpack serve  --env mode=local env=dev --config ./build/webpack.dev.config.js",
     "test": "webpack serve  --env mode=local env=test --config ./build/webpack.dev.config.js",
