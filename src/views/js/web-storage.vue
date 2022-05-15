@@ -14,9 +14,9 @@
     computed: {},
     watch: {},
     mounted() {
-      this.testLocalStorageLimit()
-      this.testLocalStorageTimeConsume()
-      this.indexedDBInit()
+      // this.testLocalStorageLimit()
+      // this.testLocalStorageTimeConsume()
+      // this.indexedDBInit()
     },
     methods: {
       testLocalStorageLimit() {
@@ -24,19 +24,15 @@
         for (let i = 0; i < 1024 * 1024 * 1; i++) {
           data += 'a'
         }
-        localStorage.setItem('testMaxLocalStorage', data)
+        localStorage.setItem('testLocalStorageLimit', data)
       },
       testLocalStorageTimeConsume() {
-        let data = ''
-        for (let i = 0; i < 1024 * 1024; i++) {
-          data += 'b'
-        }
         console.time('testLocalStorageTimeConsume')
-        for (let i = 0; i < 1000; i++) {
-          localStorage.setItem('testTimeConsume', data)
-          localStorage.removeItem('testLocalStorageTimeConsume')
+        for (let i = 0; i < 10000 * 5; i++) {
+          let data = {id: i, name: '张国峰', age: 18}
+          localStorage.setItem(`testLocalStorageTimeConsume-${i}`, JSON.stringify(data))
         }
-        console.timeEnd('testTimeConsume')
+        console.timeEnd('testLocalStorageTimeConsume')
       },
       indexedDBInit() {
         let db = null
@@ -50,8 +46,8 @@
           // 插入数据
           console.time('testIndexDBTimeConsume')
           let trans = db.transaction('student', 'readwrite').objectStore('student')
-          for (let i = 0; i < 1024 * 1024 * 1; i++) {
-            trans.add({id: i, name: 'a'})
+          for (let i = 0; i < 10000 * 5; i++) {
+            trans.add({id: i, name: '张国峰', age: 18})
           }
           console.timeEnd('testIndexDBTimeConsume')
           trans.onsuccess = function(e) {
@@ -68,8 +64,9 @@
             keyPath: 'id',
           })
           // 创建索引
+          objectStore.createIndex('id', 'id', { unique: true })
           objectStore.createIndex('name', 'name', { unique: false })
-          // objectStore.createIndex('age', 'age', { unique: true })
+          objectStore.createIndex('age', 'age', { unique: false })
         }
       },
     },
