@@ -62,6 +62,8 @@
     "webpackbar": "^5.0.2"
   },
   "dependencies": {
+    "@babel/parser": "^7.17.10",
+    "@babel/traverse": "^7.17.10",
     "axios": "^0.26.1",
     "core-js": "^3.21.1",
     "vue": "^2.6.11",
