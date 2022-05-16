@@ -6,8 +6,10 @@
 </template>
 
 <script>
+  import { fn1Mixin as a,fn2Mixin} from '@/mixins/index'
   export default {
     name: 'App',
+    mixins: [a(), fn2Mixin()],
     data() {
       return {}
     },

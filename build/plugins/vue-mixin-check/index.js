@@ -25,7 +25,6 @@ class VueMixinCheck {
       }) => name === this.key)) {
       return
     }
-
     compiler.hooks.compilation.tap(this.key, compilation => {
       const files = []
       // 模块构建成功时执行
@@ -33,15 +32,16 @@ class VueMixinCheck {
         resource
       }) => {
         if (resource) {
+          // console.log('succeedModule', resource)
           if (isMatch(resource)) {
-            // console.log('succeedModule', resource)
             fileHandler(resource)
           }
         }
       })
       // 所有模块都完成构建并且没有错误时执行
-      compilation.hooks.finishModules.tap(this.key, () => {
-        // console.log('finishModules', files)
+      compilation.hooks.finishModules.tap(this.key, ({ modules }) => {
+        console.log('finishModules', modules)
+        // console.log(compilation.getAssets())
       })
       // 为 compilation 创建额外 asset
       compilation.hooks.additionalAssets.tapPromise(this.key, async () => {

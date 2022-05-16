@@ -27,6 +27,7 @@
     "ant-design-vue": "^1.6.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-import": "^1.13.0",
+    "chalk": "^5.0.1",
     "clean-webpack-plugin": "^4.0.0",
     "compression-webpack-plugin": "^9.2.0",
     "copy-webpack-plugin": "^9.1.0",
@@ -56,6 +57,7 @@
     "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.14",
     "webpack": "^5.70.0",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
     "webpack-merge": "^5.8.0",
@@ -66,6 +68,7 @@
     "@babel/traverse": "^7.17.10",
     "axios": "^0.26.1",
     "core-js": "^3.21.1",
+    "lodash": "^4.17.21",
     "vue": "^2.6.11",
     "vue-router": "^3.3.2",
     "vuex": "^3.4.0"
