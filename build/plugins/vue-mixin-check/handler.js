@@ -13,7 +13,7 @@ function fileHandler(path) {
   // console.log('===== jsCode =====', jsCode)
   // 2、生成AST
   const ast = babelParser.parse(jsCode, { sourceType: 'module', sourceFilename: true })
-  console.log('ast', ast)
+  // console.log('ast', ast)
   return
   // 遍历AST
   babelTraverse(ast, {

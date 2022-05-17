@@ -1,5 +1,5 @@
 
-const ESLINT_PLUGIN = 'VueMixinCheck'
+const VUE_MIXIN_CHECK = 'VueMixinCheck'
 const fileHandler = require('./handler')
 let counter = 0
 function isMatch(path) {
@@ -7,44 +7,46 @@ function isMatch(path) {
 }
 class VueMixinCheck {
   constructor(options = {}) {
-    this.key = ESLINT_PLUGIN
+    this.key = VUE_MIXIN_CHECK
     this.run = this.run.bind(this)
   }
   apply(compiler) {
-    // console.log('compiler.name', compiler.name)
+    // console.log('compiler', compiler)
     this.key = compiler.name || `${this.key}_${counter += 1}`
     // 在监听模式下，一个新的 compilation 触发之后，但在 compilation 实际开始之前执行。
-    compiler.hooks.watchRun.tapPromise(this.key, c => {
-      return this.run(c)
+    // AsyncSeriesHook 异步串行钩子
+    compiler.hooks.watchRun.tapPromise(this.key, compiler => {
+      return this.run(compiler)
     })
   }
   async run(compiler) {
-    if (
-      compiler.hooks.compilation.taps.find(({
-        name
-      }) => name === this.key)) {
-      return
-    }
+    // 判断当前插件是否已经已经注册过
+    let hasTap = compiler.hooks.compilation.taps.find(({ name }) => name === this.key)
+    if (hasTap) return
     compiler.hooks.compilation.tap(this.key, compilation => {
+      // compilation.warnings.push('222') //告警
       const files = []
       // 模块构建成功时执行
       compilation.hooks.succeedModule.tap(this.key, ({
         resource
       }) => {
         if (resource) {
-          // console.log('succeedModule', resource)
           if (isMatch(resource)) {
+            // console.log('succeedModule', resource)
             fileHandler(resource)
           }
         }
       })
       // 所有模块都完成构建并且没有错误时执行
       compilation.hooks.finishModules.tap(this.key, ({ modules }) => {
-        console.log('finishModules', modules)
-        // console.log(compilation.getAssets())
+        // console.log('finishModules', modules)
       })
-      // 为 compilation 创建额外 asset
-      compilation.hooks.additionalAssets.tapPromise(this.key, async () => {
+    })
+    compiler.hooks.contextModuleFactory.tap(this.key, contextModuleFactory => {
+      console.log('contextModuleFactory', 'contextModuleFactory')
+      contextModuleFactory.hooks.contextModuleFiles.tap(this.key, (data) => {
+        console.log('data', data)
+        // callback()
       })
     })
   }

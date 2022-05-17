@@ -3,8 +3,7 @@ const { merge } = require('webpack-merge')
 const openInEditor = require('launch-editor-middleware')
 const Webpack = require('webpack')
 const { getPort } = require('./utils')
-// const VueMixinCheck = require('./plugins/vue-mixin-check/index')
-const BundleAnalyzerPlugin = require('./plugins/webpack-bundle-analyzer/index').BundleAnalyzerPlugin
+const VueMixinCheck = require('./plugins/vue-mixin-check/index')
 module.exports = async entry => {
   const { mode, env } = entry
   const portInfo = await getPort({ port: 4396, host: 'localhost' })
@@ -55,8 +54,7 @@ module.exports = async entry => {
       ],
     },
     plugins: [
-      new BundleAnalyzerPlugin(),
-      // new VueMixinCheck(),
+      new VueMixinCheck(),
       new Webpack.DefinePlugin({
         'process.env.MODE': JSON.stringify(mode),
         'process.env.ENV': JSON.stringify(env),
