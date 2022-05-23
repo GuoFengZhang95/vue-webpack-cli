@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const threadLoader = require('thread-loader')
+// const MyLoader = require('./loaders/my-loader/index.js')
 threadLoader.warmup(
   {
     // the number of spawned workers, defaults to (number of cpus - 1) or
@@ -75,6 +76,15 @@ module.exports = {
         ]
       },
       // vue
+      {
+        test: /\.m?js$/,
+        include: [path.resolve(__dirname, '../src')],
+        use: [
+          {
+            loader: path.resolve(__dirname,'./loaders/my-loader/index.js')
+          }
+        ]
+      },
       {
         test: /\.vue$/,
         use: [
